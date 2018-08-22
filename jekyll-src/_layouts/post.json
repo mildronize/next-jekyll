@@ -1,0 +1,6 @@
+{
+  "title": "{{ page.title }}",
+  "date": "{{ page.date }}",
+  "html": {{ content | jsonify  }}
+}
+
