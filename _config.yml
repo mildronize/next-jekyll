@@ -2,7 +2,6 @@
 permalink:           /posts/:title/
 
 source:             jekyll-src
-destination:        static/data
 
 # Setup
 title:               Poole

@@ -5,17 +5,26 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node server.js",
-    "build": "next build && next export"
+    "dev": "concurrently -k -n \"NEXT,DATA,JEKYLL,J-BUILD\" -c \"bgBlue.bold,bgRed.bold,bgGreen.bold,bgGrey.bold\" \"node server.js\" \"http-server _site -p 8001\" \"npm run watch:build:jekyll\" \"npm run repeat:build\"",
+    "build": "next build && next export",
+    "build:jekyll-incremental": "jekyll build --incremental",
+    "build:jekyll": "jekyll build",
+    "watch:build:jekyll": "chokidar -i \"(_site/**|jekyll-src/.jekyll-metadata)\" \"jekyll-src/*\" -c \"npm run build:jekyll-incremental\"",
+    "repeat:build" : "bash -c \"while sleep 60; do npm run build:jekyll; done\""
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.16.3",
     "isomorphic-unfetch": "^2.1.1",
     "next": "^6.1.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^1.2.0",
+    "concurrently": "^3.6.1",
+    "http-server": "^0.11.1"
   }
 }

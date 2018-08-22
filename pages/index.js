@@ -13,7 +13,7 @@ const Index = (props) => (
   
 Index.getInitialProps = async function (context) {
   const { id } = context.query
-  const res = await fetch(`http://127.0.0.1:8080/posts/${id}/index.html`)
+  const res = await fetch(`http://127.0.0.1:8001/posts/${id}/index.html`)
   const data = await res.json()
 
   console.log(`Fetched show: ${data.title}`)

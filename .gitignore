@@ -47,6 +47,3 @@ node_modules
 # nextjs
 .next
 out
-
-# jekyll output
-static/data
