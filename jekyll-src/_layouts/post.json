@@ -1,6 +1,11 @@
 {
+  "layout": "post",
   "title": "{{ page.title }}",
-  "date": "{{ page.date }}",
-  "html": {{ content | jsonify  }}
+  "data": {
+    "title": "{{ page.title }}",
+    "date": "{{ page.date }}",
+    "html": {{ content | jsonify  }}
+  }
 }
+
 

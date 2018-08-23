@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently -k -n \"NEXT,DATA,JEKYLL,J-BUILD\" -c \"bgBlue.bold,bgRed.bold,bgGreen.bold,bgGrey.bold\" \"node server.js\" \"http-server _site -p 8001\" \"npm run watch:build:jekyll\" \"npm run repeat:build\"",
+    "dev": "concurrently -k -n \"NEXT,DATA,JEKYLL,J-BUILD\" -c \"bgBlue.bold,bgRed.bold,bgGreen.bold,bgGrey.bold\" \"node server.js\" \"npm run serve:jekyll\" \"npm run watch:build:jekyll\" \"npm run repeat:build\"",
     "build": "next build && next export",
+    "serve:jekyll": "http-server _site -p 9001",
     "build:jekyll-incremental": "jekyll build --incremental",
     "build:jekyll": "jekyll build",
-    "watch:build:jekyll": "chokidar -i \"(_site/**|jekyll-src/.jekyll-metadata)\" \"jekyll-src/*\" -c \"npm run build:jekyll-incremental\"",
+    "watch:build:jekyll": "chokidar -i \"(_site/**|jekyll-src/.jekyll-metadata)\" \"jekyll-src\" -c \"npm run build:jekyll-incremental\"",
     "repeat:build" : "bash -c \"while sleep 60; do npm run build:jekyll; done\""
   },
   "keywords": [],

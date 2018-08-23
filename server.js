@@ -9,19 +9,26 @@ app.prepare()
   .then(() => {
     const server = express()
 
-      server.get('/:id', (req, res) => {
-        const actualPage = '/'
-        const queryParams = { id: req.params.id }
-        app.render(req, res, actualPage, queryParams)
-    })
+  //   server.get('/', (req, res) => {
+  //     const actualPage = '/'
+  //     const queryParams = { id: req.params.id }
+  //     app.render(req, res, actualPage, queryParams)
+  // })
+
+    server.use('/', function(req, res, next) {  // GET 'http://www.example.com/admin/new'
+      // console.log("url:" + req.originalUrl); 
+      const actualPage = '/'
+      const queryParams = { id: req.originalUrl }
+      app.render(req, res, actualPage, queryParams)
+    });
 
     server.get('*', (req, res) => {
       return handle(req, res)
     })
 
-    server.listen(8000, (err) => {
+    server.listen(9000, (err) => {
       if (err) throw err
-      console.log('> Ready on http://localhost:8000')
+      console.log('> Ready on http://localhost:9000')
     })
   })
   .catch((ex) => {

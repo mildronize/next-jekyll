@@ -1,0 +1,9 @@
+---
+layout: null
+---
+
+{
+    "layout": "page",
+    "title": "{{ page.title }}",
+    "data": {{ content }}
+}
